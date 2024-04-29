@@ -202,7 +202,7 @@ for i in range(len(TEDbenchplusplus_datas)):
     # invert the source image
     start_code, latents_list = model.invert(source_image,
                                             source_prompt,
-                                            guidance_scale=cfg,
+                                            guidance_scale=7.5,
                                             num_inference_steps=50,
                                             return_intermediates=True)
     start_code = start_code.expand(2, -1, -1, -1)
@@ -213,13 +213,13 @@ for i in range(len(TEDbenchplusplus_datas)):
     out_dir = os.path.join(out_dir, f"sample_{sample_count}")
     os.makedirs(out_dir, exist_ok=True)
 
-    inputs = processor(Image.open(SOURCE_IMAGE_PATH), data['object'], return_tensors="pt").to(device)
+    inputs = processor(Image.open(SOURCE_IMAGE_PATH), question, return_tensors="pt").to(device)
     out = captioner.generate(**inputs)
 
-    target_prompt = data['target_text'] + ',' + processor.decode(out[0], skip_special_tokens=True)[len(data['object']):]
+    target_prompt = data['target_text'] + ',' + processor.decode(out[0], skip_special_tokens=True)
     eval_prompts.append(data['target_text'])
     prompts = [source_prompt, target_prompt]
-
+    
     # inference the synthesized image with MasaCtrl
     STEP = 4
     LAYPER = 10
