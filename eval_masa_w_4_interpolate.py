@@ -149,7 +149,7 @@ for data in TEDbench_datas:
     image_masactrl = model(prompts,
                           latents=start_code,
                           guidance_scale=cfg,
-                          interpolate_scale=interpolate_scale)
+                          text_interpolate_scale=interpolate_scale)
 
     # save the synthesized image
     out_image = torch.cat([source_image * 0.5 + 0.5,
@@ -230,7 +230,7 @@ for i in range(len(TEDbenchplusplus_datas)):
     image_masactrl = model(prompts,
                           latents=start_code,
                           guidance_scale=7.5,
-                          interpolate_scale=interpolate_scale)
+                          text_interpolate_scale=interpolate_scale)
 
     # save the synthesized image
     out_image = torch.cat([source_image * 0.5 + 0.5,
