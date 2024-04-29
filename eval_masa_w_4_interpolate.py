@@ -132,10 +132,10 @@ for data in TEDbench_datas:
     out_dir = os.path.join(out_dir, f"sample_{sample_count}")
     os.makedirs(out_dir, exist_ok=True)
 
-    inputs = processor(Image.open(SOURCE_IMAGE_PATH), data['object'], return_tensors="pt").to(device)
+    inputs = processor(Image.open(SOURCE_IMAGE_PATH), question, return_tensors="pt").to(device)
     out = captioner.generate(**inputs)
 
-    target_prompt = data['target_text'] + ',' + processor.decode(out[0], skip_special_tokens=True)[len(data['object']):]
+    target_prompt = data['target_text'] + ',' + processor.decode(out[0], skip_special_tokens=True)
     eval_prompts.append(data['target_text'])
     prompts = [source_prompt, target_prompt]
 
