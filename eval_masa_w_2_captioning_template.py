@@ -21,7 +21,7 @@ from pytorch_lightning import seed_everything
 
 from transformers import AutoProcessor, BlipForConditionalGeneration, Blip2ForConditionalGeneration
 
-output_dir_root = '../testtest'
+output_dir_root = '../workdir'
 
 
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
@@ -33,7 +33,7 @@ model = MasaCtrlPipeline.from_pretrained(model_path, scheduler=scheduler).to(dev
 
 
 model_id = "Salesforce/blip-image-captioning-base"
-# model_id = "BLIP_captioning"
+model_id = "BLIP_captioning"
 
 processor = AutoProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 captioner = BlipForConditionalGeneration.from_pretrained(model_id).to(device)
