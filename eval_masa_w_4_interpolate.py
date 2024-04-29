@@ -35,6 +35,8 @@ output_dir_root = f'../workdir/interpolate_{args.text_scale}_{args.cfg}_{model_i
 interpolate_scale = args.text_scale
 cfg = args.cfg
 
+question = 'object on '
+
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 # model_path = "xyn-ai/anything-v4.0"
 model_path = "CompVis/stable-diffusion-v1-4"
