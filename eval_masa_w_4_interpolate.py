@@ -30,7 +30,7 @@ parser.add_argument("--base", type=bool, default=False)
 args = parser.parse_args()
 
 model_id = "BLIP_captioning" if args.base else "Salesforce/blip-image-captioning-base"
-output_dir_root = f'../workdir_interpolate/interpolate_{args.text_scale}_{args.cfg}_{model_id}'
+output_dir_root = f'../workdir/interpolate_{args.text_scale}_{args.cfg}_{model_id}'
 
 interpolate_scale = args.text_scale
 cfg = args.cfg
